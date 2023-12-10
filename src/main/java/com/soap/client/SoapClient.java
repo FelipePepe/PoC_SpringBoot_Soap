@@ -1,12 +1,14 @@
 package com.soap.client;
 
 import com.soap.wsdl.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
 
 public class SoapClient extends WebServiceGatewaySupport {
 
-    private String urlService = "http://www.dneonline.com/calculator.asmx";
+    @Value("${urlService}")
+    private String urlService;
 
     public AddResponse getAddResponse(int numberA, int numberB) {
 

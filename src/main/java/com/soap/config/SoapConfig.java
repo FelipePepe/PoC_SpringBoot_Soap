@@ -1,12 +1,16 @@
 package com.soap.config;
 
 import com.soap.client.SoapClient;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 
 @Configuration
 public class SoapConfig {
+
+    @Value("${urlService}")
+    private String urlService;
 
     @Bean
     public Jaxb2Marshaller marshaller() {
@@ -21,7 +25,7 @@ public class SoapConfig {
     public SoapClient getSoapClient(Jaxb2Marshaller marshaller) {
 
         SoapClient soapClient = new SoapClient();
-        soapClient.setDefaultUri("http://www.dneonline.com/calculator.asmx");
+        soapClient.setDefaultUri(urlService);
         soapClient.setMarshaller(marshaller);
         soapClient.setUnmarshaller(marshaller);
 
